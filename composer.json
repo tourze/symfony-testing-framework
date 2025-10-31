@@ -3,9 +3,7 @@
   "description": "",
   "license": "MIT",
   "require": {
-    "php": "^8.2"
-  },
-  "require-dev": {
+    "php": "^8.2",
     "ext-ctype": "*",
     "ext-iconv": "*",
     "doctrine/dbal": "^4.0",
