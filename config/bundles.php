@@ -13,7 +13,6 @@ use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 use Symfony\UX\StimulusBundle\StimulusBundle;
 use Symfony\UX\Turbo\TurboBundle;
 use Symfony\UX\TwigComponent\TwigComponentBundle;
-use Tourze\AccessTokenBundle\AccessTokenBundle;
 use Tourze\BundleDependency\ResolveHelper;
 use Tourze\DoctrineResolveTargetEntityBundle\DoctrineResolveTargetEntityBundle;
 use Twig\Extra\TwigExtraBundle\TwigExtraBundle;
@@ -36,7 +35,6 @@ return ResolveHelper::resolveBundleDependencies([
     DoctrineResolveTargetEntityBundle::class => ['all' => true],
 
     // 考虑到很多业务都是需要登录的，我们直接在这里引入这些模块，以简化测试
-    AccessTokenBundle::class => ['all' => true],
     BizUserBundle\BizUserBundle::class => ['all' => true],
 
     ...(is_file(__DIR__ . '/bundles-local.php') ? require __DIR__ . '/bundles-local.php' : []),

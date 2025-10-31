@@ -18,17 +18,6 @@ security:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
 
-    # API防火墙配置，使用访问令牌认证
-    api:
-      pattern: ^/api
-      provider: app_user_provider
-      stateless: true
-      access_token:
-        token_handler: Tourze\AccessTokenBundle\Service\AccessTokenHandler
-        token_extractors:
-          - 'header'      # 从Authorization: Bearer标头获取令牌
-          - 'query_string' # 从查询字符串获取令牌
-
     main:
       lazy: true
       provider: app_user_provider
