@@ -34,8 +34,7 @@ return ResolveHelper::resolveBundleDependencies([
     DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     DoctrineResolveTargetEntityBundle::class => ['all' => true],
 
-    // 考虑到很多业务都是需要登录的，我们直接在这里引入这些模块，以简化测试
-    BizUserBundle\BizUserBundle::class => ['all' => true],
+    // 为保持该测试框架通用性，不再内置依赖具体业务用户模块（如 BizUserBundle）
 
     ...(is_file(__DIR__ . '/bundles-local.php') ? require __DIR__ . '/bundles-local.php' : []),
 ]);

@@ -2,16 +2,16 @@ security:
   # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-    BizUserBundle\Entity\BizUser:
-      algorithm: auto
+    # 内存用户使用明文密码，方便开发/测试验证
+    Symfony\Component\Security\Core\User\InMemoryUser: 'plaintext'
 
   # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
   providers:
     # used to reload user from session & other features (e.g. switch_user)
-    app_user_provider:
-      entity:
-        class: BizUserBundle\Entity\BizUser
-        property: username
+    users_in_memory:
+      memory:
+        users:
+          admin: { password: password, roles: ROLE_ADMIN }
 
   firewalls:
     dev:
@@ -20,7 +20,7 @@ security:
 
     main:
       lazy: true
-      provider: app_user_provider
+      provider: users_in_memory
 
       # 配置登录
       form_login:
@@ -63,11 +63,8 @@ when@test:
         cost: 4 # Lowest possible value for bcrypt
         time_cost: 3 # Lowest possible value for argon
         memory_cost: 10 # Lowest possible value for argon
-    providers:
-      users_in_memory:
-        memory:
-          users:
-            admin: { password: password, roles: ROLE_ADMIN }
+      Symfony\Component\Security\Core\User\InMemoryUser: 'plaintext'
+    # 测试环境沿用内存用户提供者
     firewalls:
       dev:
         pattern: ^/(_(profiler|wdt)|css|images|js)/
