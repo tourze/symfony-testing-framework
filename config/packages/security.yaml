@@ -1,0 +1,99 @@
+security:
+  # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    BizUserBundle\Entity\BizUser:
+      algorithm: auto
+
+  # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+  providers:
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: BizUserBundle\Entity\BizUser
+        property: username
+
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+
+    # API防火墙配置，使用访问令牌认证
+    api:
+      pattern: ^/api
+      provider: app_user_provider
+      stateless: true
+      access_token:
+        token_handler: Tourze\AccessTokenBundle\Service\AccessTokenHandler
+        token_extractors:
+          - 'header'      # 从Authorization: Bearer标头获取令牌
+          - 'query_string' # 从查询字符串获取令牌
+
+    main:
+      lazy: true
+      provider: app_user_provider
+
+      # 配置登录
+      form_login:
+        login_path: app_login
+        check_path: app_login
+        default_target_path: admin
+        username_parameter: _username
+        password_parameter: _password
+        enable_csrf: true
+
+      # 配置登出
+      logout:
+        path: app_logout
+        target: app_login
+
+      # 记住我功能
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 604800 # 一周
+        path: /
+        always_remember_me: false
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+    - { path: ^/login, roles: PUBLIC_ACCESS }
+    - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+    - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/admin, roles: ROLE_ADMIN }
+
+when@test:
+  security:
+    password_hashers:
+      # By default, password hashers are resource intensive and take time. This is
+      # important to generate secure password hashes. In tests however, secure hashes
+      # are not important, waste resources and increase test times. The following
+      # reduces the work factor to the lowest possible values.
+      Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+        algorithm: auto
+        cost: 4 # Lowest possible value for bcrypt
+        time_cost: 3 # Lowest possible value for argon
+        memory_cost: 10 # Lowest possible value for argon
+    providers:
+      users_in_memory:
+        memory:
+          users:
+            admin: { password: password, roles: ROLE_ADMIN }
+    firewalls:
+      dev:
+        pattern: ^/(_(profiler|wdt)|css|images|js)/
+        security: false
+      # 在测试环境中使用内存用户提供者，避免数据库依赖
+      main:
+        lazy: true
+        provider: users_in_memory
+        # 配置表单登录以支持EasyAdmin
+        form_login:
+          login_path: app_login
+          check_path: app_login
+          default_target_path: admin
+        # 配置登出以支持EasyAdmin  
+        logout:
+          # 在测试环境中使用明确的 URL 路径，避免依赖路由解析
+          path: /logout
+          target: app_login

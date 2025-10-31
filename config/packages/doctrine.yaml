@@ -1,0 +1,32 @@
+doctrine:
+    dbal:
+        url: '%env(default:default_database_url:DATABASE_URL)%'
+        driver: 'pdo_sqlite'
+        memory: true
+        charset: utf8mb4
+        profiling_collect_backtrace: '%kernel.debug%'
+        use_savepoints: true
+
+    orm:
+        auto_generate_proxy_classes: true
+        enable_lazy_ghost_objects: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                auto_mapping: true
+                report_fields_where_declared: true
+                validate_xml_mapping: true
+                identity_generation_preferences:
+                    Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
+        controller_resolver:
+            auto_mapping: false
+
+when@test:
+    doctrine:
+        dbal:
+            driver: 'pdo_sqlite'
+            memory: true
+            charset: utf8mb4
+
+parameters:
+    default_database_url: 'sqlite:///:memory:'

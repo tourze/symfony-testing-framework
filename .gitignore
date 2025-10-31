@@ -1,0 +1,33 @@
+###> symfony/framework-bundle ###
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+###< symfony/phpunit-bridge ###
+
+###> symfony/asset-mapper ###
+###< symfony/asset-mapper ###
+var/
+vendor/
+.phpunit.cache/
+/assets/vendor/
+/public/assets/
+/public/bundles/
+/vendor/
+composer.lock
+.php-cs-fixer.cache
+.phpunit.result.cache
+phpunit.xml
+!/var/data.db
+.idea
+/.env.local
+/.env.local.php
+/config/secrets/prod/prod.decrypt.private.php
+/phpunit.xml
+config/bundles-local.php
+*.cache
+*.log
+/.env.*.local
+/var/*

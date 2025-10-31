@@ -1,0 +1,9 @@
+framework:
+    asset_mapper:
+        # 测试环境下禁用 asset mapper，因为临时目录中没有 assets 文件夹
+        enabled: false
+
+when@prod:
+    framework:
+        asset_mapper:
+            enabled: false

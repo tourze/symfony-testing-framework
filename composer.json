@@ -1,0 +1,100 @@
+{
+  "name": "tourze/symfony-testing-framework",
+  "description": "",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2"
+  },
+  "require-dev": {
+    "ext-ctype": "*",
+    "ext-iconv": "*",
+    "doctrine/dbal": "^4.0",
+    "doctrine/doctrine-bundle": "^2.13",
+    "doctrine/doctrine-fixtures-bundle": "^4.0",
+    "doctrine/orm": "^3.0",
+    "easycorp/easyadmin-bundle": "^4",
+    "league/construct-finder": "^1.5",
+    "phpstan/phpdoc-parser": "^2.1",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^11.5",
+    "symfony/asset": "^7.3",
+    "symfony/asset-mapper": "^7.3",
+    "symfony/browser-kit": "^7.3",
+    "symfony/console": "^7.3",
+    "symfony/css-selector": "^7.3",
+    "symfony/debug-bundle": "^7.3",
+    "symfony/dependency-injection": "^7.3",
+    "symfony/doctrine-bridge": "^7.3",
+    "symfony/doctrine-messenger": "^7.3",
+    "symfony/dotenv": "^7.3",
+    "symfony/expression-language": "^7.3",
+    "symfony/form": "^7.3",
+    "symfony/framework-bundle": "^7.3",
+    "symfony/http-client": "^7.3",
+    "symfony/intl": "^7.3",
+    "symfony/mailer": "^7.3",
+    "symfony/maker-bundle": "^1.63.0",
+    "symfony/mime": "^7.3",
+    "symfony/monolog-bundle": "^3.10",
+    "symfony/notifier": "^7.3",
+    "symfony/phpunit-bridge": "^7.3",
+    "symfony/process": "^7.3",
+    "symfony/property-access": "^7.3",
+    "symfony/property-info": "^7.3",
+    "symfony/security-bundle": "^7.3",
+    "symfony/security-core": "^7.3",
+    "symfony/serializer": "^7.3",
+    "symfony/stimulus-bundle": "^2.24.0",
+    "symfony/stopwatch": "^7.3",
+    "symfony/string": "^7.3",
+    "symfony/translation": "^7.3",
+    "symfony/twig-bundle": "^7.3",
+    "symfony/ux-turbo": "^2.24.0",
+    "symfony/validator": "^7.3",
+    "symfony/var-exporter": "^7.3",
+    "symfony/web-link": "^7.3",
+    "symfony/web-profiler-bundle": "^7.3",
+    "symfony/yaml": "^7.3",
+    "tourze/access-token-bundle": "0.0.*",
+    "tourze/biz-user-bundle": "0.0.*",
+    "tourze/bundle-dependency": "1.*",
+    "tourze/json-rpc-http-endpoint-bundle": "0.1.*",
+    "tourze/phpunit-base": "1.*",
+    "tourze/phpunit-symfony-web-test": "0.0.*",
+    "twig/extra-bundle": "^3.21",
+    "twig/twig": "^3.21"
+  },
+  "conflict": {
+    "symfony/symfony": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SymfonyTestingFramework\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SymfonyTestingFramework\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "^7.3"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "8.2.7"
+    },
+    "allow-plugins": {
+      "php-http/discovery": true
+    },
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
