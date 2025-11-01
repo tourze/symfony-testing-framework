@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use SymfonyTestingFramework\CompilerPass\MakeProceduresPublicPass;
 use Tourze\BundleDependency\ResolveHelper;
 
 class Kernel extends BaseKernel
@@ -68,6 +69,9 @@ class Kernel extends BaseKernel
     protected function build(ContainerBuilder $container): void
     {
         parent::build($container);
+
+        // 在测试环境中，让所有 Procedure 类自动变为 public
+        $container->addCompilerPass(new MakeProceduresPublicPass());
 
         // 方便我们读取并操作fixture
         if ($container->hasDefinition('doctrine.fixtures.loader')) {
