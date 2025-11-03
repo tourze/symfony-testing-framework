@@ -73,12 +73,12 @@ when@test:
       main:
         lazy: true
         provider: users_in_memory
-        # 配置表单登录以支持EasyAdmin
+            # 配置表单登录以支持EasyAdmin
         form_login:
           login_path: app_login
           check_path: app_login
           default_target_path: admin
-        # 配置登出以支持EasyAdmin  
+        # 配置登出以支持EasyAdmin
         logout:
           # 在测试环境中使用明确的 URL 路径，避免依赖路由解析
           path: /logout
