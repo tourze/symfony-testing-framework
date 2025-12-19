@@ -17,7 +17,7 @@ use Tourze\BundleDependency\ResolveHelper;
 use Tourze\DoctrineResolveTargetEntityBundle\DoctrineResolveTargetEntityBundle;
 use Twig\Extra\TwigExtraBundle\TwigExtraBundle;
 
-return ResolveHelper::resolveBundleDependencies([
+return iterator_to_array(ResolveHelper::resolveBundleDependencies([
     FrameworkBundle::class => ['all' => true],
     DoctrineBundle::class => ['all' => true],
     DebugBundle::class => ['dev' => true],
@@ -37,4 +37,4 @@ return ResolveHelper::resolveBundleDependencies([
     // 为保持该测试框架通用性，不再内置依赖具体业务用户模块（如 BizUserBundle）
 
     ...(is_file(__DIR__ . '/bundles-local.php') ? require __DIR__ . '/bundles-local.php' : []),
-]);
+]));

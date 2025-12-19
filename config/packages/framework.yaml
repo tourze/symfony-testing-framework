@@ -19,3 +19,7 @@ when@test:
     test: true
     session:
       storage_factory_id: session.storage.factory.mock_file
+    http_client:
+      # Use MockHttpClient in test environment to prevent actual HTTP requests
+      # This avoids memory exhaustion and ensures tests are deterministic
+      mock_response_factory: SymfonyTestingFramework\Http\TestHttpResponseFactory

@@ -15,3 +15,5 @@ services:
     resource: '../src/Command/'
   SymfonyTestingFramework\Controller\:
     resource: '../src/Controller/'
+  SymfonyTestingFramework\Http\:
+    resource: '../src/Http/'

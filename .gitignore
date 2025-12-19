@@ -31,3 +31,5 @@ config/bundles-local.php
 *.log
 /.env.*.local
 /var/*
+
+config/reference.php
