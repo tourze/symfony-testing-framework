@@ -27,9 +27,8 @@ phpunit.xml
 /config/secrets/prod/prod.decrypt.private.php
 /phpunit.xml
 config/bundles-local.php
+config/reference.php
 *.cache
 *.log
 /.env.*.local
 /var/*
-
-config/reference.php
